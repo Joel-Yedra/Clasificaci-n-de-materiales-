@@ -1,42 +1,30 @@
 # 🛠️ Clasificador de Materiales por Color con OpenPLC y Arduino
 
-Este proyecto consiste en un sistema de clasificación automática de materiales basado en su **color**, integrando la plataforma **OpenPLC** con una placa **Arduino UNO**. El objetivo principal fue crear una línea de clasificación donde un sensor identifica el color del material transportado, y un servomotor lo redirige al compartimento correspondiente según ese color.
-
-## ⚙️ ¿Cómo funciona?
-
-El sistema está compuesto por los siguientes elementos:
-
-- 🎛️ **Motor Reductor:** impulsa una banda transportadora que lleva los objetos a lo largo del sistema.
-- 📦 **Banda Transportadora:** mueve el material hacia el punto de inspección.
-- 🎨 **Sensor de Color TCS34725:** detecta el color RGB del material al pasar por el sensor.
-- 🔄 **Arduino UNO:** recibe los datos del sensor y los comunica a OpenPLC.
-- 🧠 **OpenPLC:** se encarga de procesar la lógica de control del sistema.
-- 🤖 **Servomotor:** gira a un ángulo específico según el color detectado, redirigiendo el material al compartimiento correspondiente.
-
-## 🔁 Lógica del sistema
-
-1. El motor pone en marcha la banda transportadora.
-2. El material pasa por el sensor TCS34725.
-3. El sensor identifica el color (por ejemplo: rojo, verde, azul).
-4. Arduino transmite los datos a OpenPLC.
-5. Según el color recibido, se define un ángulo de giro para el servomotor.
-6. El servomotor redirige el material al compartimiento asignado.
+Este proyecto consiste en un sistema de clasificación automática de materiales basado en su **color**, integrando la plataforma **OpenPLC** con una placa **Arduino UNO**. El objetivo principal fue crear una línea de clasificación donde un sensor de proximidad activa un motor reductor, este a su vez enciende la banda trsmportada cuando recibe material, identifica el color del material transportado por medio de un sensor de color, y dos servomotores lo redirigen al compartimento correspondiente según ese color.
 
 ## 🧰 Tecnologías utilizadas
 
-- OpenPLC Runtime (en PC o Raspberry Pi)
-- Arduino UNO
-- Sensor TCS34725 (sensor de color RGB)
-- Motor reductor DC
-- Banda transportadora
-- Servomotor (SG90 o similar)
+El sistema está compuesto por los siguientes elementos:
+
+- 🎛️ **Motor Reductor:** Impulsa una banda transportadora que lleva los objetos a lo largo del sistema.
+- 📦 **Banda Transportadora:** Mueve el material hacia el punto de inspección y despues los transporta a un compartimiento especifico.
+- 🎨 **Sensor de Color TCS34725:** Detecta el color RGB del material al pasar por el sensor.
+- 🔄 **Arduino UNO:** Recibe los datos del sensor y los comunica a OpenPLC.
+- 🧠 **OpenPLC:** Se encarga de procesar los datos y en base a la programacion en PLC y un codigo de Arduino; activa los actuadores, que en este caso son los servomotores.
+- 🤖 **Servomotor:** Gira a un ángulo específico según el color detectado, redirigiendo el material al compartimiento correspondiente.
+-  🔦 Sensor de proximidad E18-D80NK:** Tiene la funcion de activar la banda transportadora cuando recibe el material 
+
+## 🔁 Lógica del sistema
+
+1. Un AGV (Automatic Guided Vehicle) envia el material y el sistema lo recibe para cliasificarlo segun sus caracteriticas.
+2. Al recibir el material el sensor de proximidad se activa al igual que el motor reductor, ocasionando que el material llegue hacia el sensor de color
+3. El material pasa por el sensor TCS34725 y analiza el color que posee. Entre las opciones que se encuentran es azul, verde o amarillo
+4. En base al color, se define un ángulo de giro para los servomotores para clasificar el material 
+5. Gracias al movimiento constante generado por la banda trsnportadora y el angulo generado por los servomotores, se redirige el material al compartimiento asignado.
+
 
 ## 📹 Video del proyecto
 
-[![Ver en YouTube](https://img.shields.io/badge/Video%20del%20Proyecto-YouTube-red?logo=youtube)](https://www.youtube.com/watch?v=ID_DEL_VIDEO)
+[Clasificacion de materiales](https://youtube.com/shorts/kHZi7zJUA0E?feature=share)
 
-> ⚠️ Reemplaza `ID_DEL_VIDEO` con el ID real de tu video de YouTube.
 
----
-
-¿Te gustaría que también te ayude con una sección de **código**, **esquema de conexiones**, o una **licencia** para tu proyecto? Puedo completarlo.

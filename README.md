@@ -139,8 +139,9 @@ El sistema está compuesto por los siguientes elementos:
 - [Da clic aqui para conocer las entradas y salidas en Open PLC](https://autonomylogic.com/docs/2-4-physical-addressing/). Las tarjetas Arduino son las que estan en el apartado que tiene el titulo Uno, Nano, Leonardo, Micro y Zero
 
   1. Declaramos las variables que van a ser de salida y de entrada con sus respectivos pines. El nombre de la variable "Linterna" reprseenta el sensor de proximidad, "Paro" representa un boton de paro de emergencia en caso de que se necesite detener todo el sistema y es normalmente cerrado. Por ultimo, "Motor" representa el motor reductor que ocasiona el movimiento en la banda transportadora
+  2. 
+![Imagen de WhatsApp 2025-07-17 a las 19 12 23_eecce24e](https://github.com/user-attachments/assets/0e2fdfed-3444-4bae-87ff-3cb1ee5e3fb5)
 
-     [Declaracion de variables](https://raw.githubusercontent.com/tu-usuario/tu-repo/main/Imagen 4)
 
 
 2.  Cuando el AGV aparece enfernte de la banda transportadora, el switch que corresponde al sensor de proximidad se transforma de normalmente abierto a normalmente cerrado, activando la bobina que representa el motor reductor. Esto ocasione que el motor se active al igual que la banda transportadora

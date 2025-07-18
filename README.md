@@ -134,11 +134,24 @@ El sistema está compuesto por los siguientes elementos:
 ```
 ##   Logica del codigo (La parte de PLC)
 
-- Declaramos las variables que van a ser de salida y de entrada con sus respectivos pines. El nombre de la variable "Linterna" reprseenta el sensor de proximidad, "Paro" representa un boton de paro de emergencia en caso de que se necesite detener todo el sistema y es normalmente cerrado. Por ultimo, "Motor" representa el motor reductor que ocasiona el movimiento en la banda transportadora
+- La configuracion de las entradas y las salidas en Open PLC se buscan en la pagina de internet de la misma ya que cada pin de la tarjeta Arduino tiene su propio valor
+  
+- [Da clic aqui para conocer las entradas y salidas en Open PLC](https://autonomylogic.com/docs/2-4-physical-addressing/). Las tarjetas Arduino son las que estan en el apartado que tiene el titulo Uno, Nano, Leonardo, Micro y Zero
 
-- La configuracion de las entradas y las salidas en Open PLC se buscan en la pagina de internet ya que cada pin de la tarjeta Arduino tiene su propio valor. [Pagina para checar entradas y salidas de Open PLC](https://autonomylogic.com/docs/2-4-physical-addressing/). Las tarjetas Arduino son las que estan en el apartado que tiene el titulo Uno, Nano, Leonardo, Micro y Zero
+  1. Declaramos las variables que van a ser de salida y de entrada con sus respectivos pines. El nombre de la variable "Linterna" reprseenta el sensor de proximidad, "Paro" representa un boton de paro de emergencia en caso de que se necesite detener todo el sistema y es normalmente cerrado. Por ultimo, "Motor" representa el motor reductor que ocasiona el movimiento en la banda transportadora
 
-- Cuando el AGV aparece enfernte de la banda transportadora, el switch que corresponde al sensor de proximidad se transforma de normalmente abierto a normalmente cerrado, activando la bobina que representa el motor reductor. Esto ocasione que el motor se active al igual que la banda transportadora 
+     
+
+
+2.  Cuando el AGV aparece enfernte de la banda transportadora, el switch que corresponde al sensor de proximidad se transforma de normalmente abierto a normalmente cerrado, activando la bobina que representa el motor reductor. Esto ocasione que el motor se active al igual que la banda transportadora
+   
+3. Al ser activada la bobina que representa al motor, pasamos a la siguiente etapa en la cual se insertaba un timer de tipo TPO. Este timer tiene la funcion de detener la corriente electrica por 2 segundos para que el sensor de color tuviera el tiempo suficiente para correr el codigo de Arduino y reconocer el color del material
+   
+4. Despues de que se cumplan los 2 segundos, se le da energia a la bobina que representa la variable "Sensor1_ON". Esta bobina al ser activada obtiene el valor de 1, provocando que pueda entrar a los condicionales que activan los servomotores dependiendo del color
+
+   
+
+
   
 
 

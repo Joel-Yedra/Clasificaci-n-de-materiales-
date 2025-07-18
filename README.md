@@ -12,7 +12,8 @@ El sistema está compuesto por los siguientes elementos:
 - 🔄 **Arduino UNO:** Recibe los datos del sensor y los comunica a OpenPLC.
 - 🧠 **OpenPLC:** Se encarga de procesar los datos y en base a la programacion en PLC y un codigo de Arduino; activa los actuadores, que en este caso son los servomotores.
 - 🤖 **Servomotor:** Gira a un ángulo específico según el color detectado, redirigiendo el material al compartimiento correspondiente.
--  🔦 Sensor de proximidad E18-D80NK:** Tiene la funcion de activar la banda transportadora cuando recibe el material 
+-  🔦 Sensor de proximidad E18-D80NK:** Tiene la funcion de activar la banda transportadora cuando recibe el material
+  
 
 ## 🔁 Lógica del sistema
 
@@ -26,5 +27,54 @@ El sistema está compuesto por los siguientes elementos:
 ## 📹 Video del proyecto
 
 [Clasificacion de materiales](https://youtube.com/shorts/kHZi7zJUA0E?feature=share)
+
+
+##  Logica del codigo
+
+- Se declaran las librerias para los servomotores y para el sensor de color
+
+  ```
+  #include <Servo.h> //Librria para el servomotor 
+  #include <Adafruit_TCS34725.h> //Libreria para el sensor de color
+   ```
+- Se declaran el sensor de color, los servomotores, los angulos que seran constantes durante la ejecucuion del codigo y unas variables que usaremos como banderas mas adelante en el codigo 
+
+  ```
+
+  // Inicializaci\xf3n del sensor de color
+    Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
+
+  // Inicializacion de los servos
+    Servo myservo1;
+    Servo myservo2;
+
+  // Definimos los angulos para los servos
+  const int Angulo1 = 50; // Puedes trabajar con los angulos 38 y 47 pero es mejor 50 
+  const int Angulo2 = 90;
+  const int Angulo3 = 135; //138
+  
+  // Declaraci\xf3n de variables globales
+  bool F1 = 0, F2 = 0, F3 = 0, F4 = 0;   // Flags para colores
+  
+- Insertamos una funcion para que comience la ejecucuion del sensor de color
+  ```
+   if (!tcs.begin()) {
+        Serial.println("Sensor TCS34725 no detectado.");
+        while (1); // Detener ejecuci\xf3n si no hay sensor
+    }
+-Se declara el pin en el que estaran los servomotores y el angulo en el que deberian de estar 
+```
+    // Configuraci\xf3n de los servos
+    myservo1.attach(15);
+    myservo1.write(90); // Posici\xf3n inicial
+    myservo2.attach(16);
+    myservo2.write(90); // Posici\xf3n inicial
+
+```
+-Con este comando "Serial.begin" se inicia la comunicacion serial entre el Arduino y la computaada para mostarr las lecturas del sensor
+
+    Serial.begin(9600); // Comunicacion serial
+  
+
 
 

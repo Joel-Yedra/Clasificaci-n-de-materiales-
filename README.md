@@ -138,7 +138,7 @@ El sistema está compuesto por los siguientes elementos:
   
 - [Da clic aqui para conocer las entradas y salidas en Open PLC](https://autonomylogic.com/docs/2-4-physical-addressing/). Las tarjetas Arduino son las que estan en el apartado que tiene el titulo Uno, Nano, Leonardo, Micro y Zero
 
-  1. Declaramos las variables que van a ser de salida y de entrada con sus respectivos pines. El nombre de la variable "Linterna" reprseenta el sensor de proximidad, "Paro" representa un boton de paro de emergencia en caso de que se necesite detener todo el sistema y es normalmente cerrado. Por ultimo, "Motor" representa el motor reductor que ocasiona el movimiento en la banda transportadora
+1. Declaramos las variables que van a ser de salida y de entrada con sus respectivos pines. El nombre de la variable "Linterna" reprseenta el sensor de proximidad, "Paro" representa un boton de paro de emergencia en caso de que se necesite detener todo el sistema y es normalmente cerrado. Por ultimo, "Motor" representa el motor reductor que ocasiona el movimiento en la banda transportadora
 
 ![Imagen 4](https://github.com/user-attachments/assets/23346f5d-12cb-444e-8c1d-cd160a666a19)
 

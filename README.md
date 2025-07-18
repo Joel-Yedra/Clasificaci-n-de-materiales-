@@ -29,7 +29,7 @@ El sistema está compuesto por los siguientes elementos:
 [Clasificacion de materiales](https://youtube.com/shorts/kHZi7zJUA0E?feature=share)
 
 
-##  Logica del codigo
+##  Logica del codigo (La parte de Arduino)
 
 - Se declaran las librerias para los servomotores y para el sensor de color
 
@@ -74,7 +74,74 @@ El sistema está compuesto por los siguientes elementos:
 -Con este comando "Serial.begin" se inicia la comunicacion serial entre el Arduino y la computaada para mostarr las lecturas del sensor
 
     Serial.begin(9600); // Comunicacion serial
+
+- Aqui se declaran las variables que vamos a utilizar para obtener las lecturas del sensor. Estas lecturas tiene las letras RGB porque dependiendo el color que detecte el sensor; son los valores de RGB que se obtienen
+
+  ```
+   float red, green, blue;
+    tcs.getRGB(&red, &green, &blue);
+    int R = int(red);
+    int G = int(green);
+    int B = int(blue);
+    String color = "Neutral";
+
+-Se realizan calculos con las lecturas que obtenemos del sensor y de acuerdo a esas lecturas creamos las condiciones para mostrar en la pantalla y en el codigo que color tiene el material que fue entregado. Estas operaciones se calculan con la ayuda del video que dejo hasta el final
+
+```
+  // Detecci\xf3n del color y asignaci\xf3n de flags
+
+    if ((R - G > 10) && (G - B > 60)) { // Amarillo
+        color = "Amarillo";
+        F1 = 1; F2 = 0; F3 = 0; F4 = 0;
+    } else if ((G - R > 20) && (G - B > 50)) { // Verde
+        color = "Verde";
+        F1 = 0; F2 = 1; F3 = 0; F4 = 0;
+    } else if ((G - R > 10) && (B - G > 20)) { // Azul
+        color = "Azul";
+        F1 = 0; F2 = 0; F3 = 1; F4 = 0;
+    } else { // Neutral
+        F1 = 0; F2 = 0; F3 = 0; F4 = 1;
+    }
+
+    // Imprimir valores para depuraci\xf3n
+
+    Serial.print("R: "); Serial.print(R);
+    Serial.print(" G: "); Serial.print(G);
+    Serial.print(" B: "); Serial.print(B);
+    Serial.print(" Color: "); Serial.println(color);
+```
+- De acuerdo al color que se detecto y al codigo que se encuentra en PLC, entra a la condicion correspondiente y se van calasificacion los materiales. Dejamos un delay al final para que el programa no se activara tan rapido
+
+ ```
+// Control de los servos seg\xfan el flag activo
+    if (F1 && Servo1_ON) { // Amarillo
+        myservo1.write(Angulo1);
+        myservo2.write(Angulo1-10);
+    } else if (F2 && Servo1_ON) { // Verde
+        myservo1.write(Angulo2);
+        myservo2.write(Angulo2);
+    } else if (F3 && Servo1_ON) { // Azul
+        myservo1.write(Angulo3);
+        myservo2.write(Angulo3);
+    } else if (F4 && !Servo1_ON) { // Neutral
+        myservo1.write(90); // Posici\xf3n central
+        myservo2.write(90);
+    }
+
+    // Peque\xf1a pausa para estabilidad
+    delay(100);
+
+```
+##   Logica del codigo (La parte de PLC)
+
+- Declaramos las variables que van a ser de salida y de entrada con sus respectivos pines. El nombre de la variable "Linterna" reprseenta el sensor de proximidad, "Paro" representa un boton de paro de emergencia en caso de que se necesite detener todo el sistema y es normalmente cerrado. Por ultimo, "Motor" representa el motor reductor que ocasiona el movimiento en la banda transportadora
+
+- La configuracion de las entradas y las salidas en Open PLC se buscan en la pagina de internet ya que cada pin de la tarjeta Arduino tiene su propio valor. [Pagina para checar entradas y salidas de Open PLC](https://autonomylogic.com/docs/2-4-physical-addressing/). Las tarjetas Arduino son las que estan en el apartado que tiene el titulo Uno, Nano, Leonardo, Micro y Zero
+
+- Cuando el AGV aparece enfernte de la banda transportadora, el switch que corresponde al sensor de proximidad se transforma de normalmente abierto a normalmente cerrado, activando la bobina que representa el motor reductor. Esto ocasione que el motor se active al igual que la banda transportadora 
   
+
+
 
 
 

@@ -143,12 +143,17 @@ El sistema está compuesto por los siguientes elementos:
    ![Imagen 4](https://github.com/user-attachments/assets/23346f5d-12cb-444e-8c1d-cd160a666a19)
 
 2.  Cuando el AGV aparece enfernte de la banda transportadora, el switch que corresponde al sensor de proximidad se transforma de normalmente abierto a normalmente cerrado, activando la bobina que representa el motor reductor. Esto ocasione que el motor se active al igual que la banda transportadora
+
+  ![Imagen 2](https://github.com/user-attachments/assets/f48cc4fa-b389-4eb5-acc4-6baa9938db38)
+
    
 3. Al ser activada la bobina que representa al motor, pasamos a la siguiente etapa en la cual se insertaba un timer de tipo TPO. Este timer tiene la funcion de detener la corriente electrica por 2 segundos para que el sensor de color tuviera el tiempo suficiente para correr el codigo de Arduino y reconocer el color del material
+
    
 4. Despues de que se cumplan los 2 segundos, se le da energia a la bobina que representa la variable "Sensor1_ON". Esta bobina al ser activada obtiene el valor de 1, provocando que pueda entrar a los condicionales que activan los servomotores dependiendo del color
 
    
+![Imagen 1](https://github.com/user-attachments/assets/f3678cf5-e125-4419-8341-931d45afaa2c)
 
 
   

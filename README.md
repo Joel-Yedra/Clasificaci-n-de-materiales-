@@ -1,6 +1,6 @@
 # 🛠️ Color-Based Material Classifier with OpenPLC and Arduino
 
-TThis project consists of an automatic material classification system based on its color, integrating the OpenPLC platform with an Arduino UNO board. The main objective was to create a sorting line where a proximity sensor activates a gear motor, which in turn turns on the conveyor belt when material is received. It identifies the color of the transported material through a color sensor, and two servomotors redirect it to the corresponding compartment based on that color.
+This project consists of an automatic material classification system based on its color, integrating the OpenPLC platform with an Arduino UNO board. The main objective was to create a sorting line where a proximity sensor activates a gear motor, which in turn turns on the conveyor belt when material is received. It identifies the color of the transported material through a color sensor, and two servomotors redirect it to the corresponding compartment based on that color.
 
 ## 🧰 Technologies Used
 
